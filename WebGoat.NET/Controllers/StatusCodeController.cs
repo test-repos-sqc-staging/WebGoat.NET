@@ -5,7 +5,6 @@ using WebGoatCore.ViewModels;
 namespace WebGoatCore.Controllers
 {
     [AllowAnonymous]
-    [IgnoreAntiforgeryToken]
     public class StatusCodeController : Controller
     {
         public const string NAME = "StatusCode";

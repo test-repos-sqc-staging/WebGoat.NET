@@ -1,6 +1,7 @@
 ﻿using WebGoatCore.Models;
 using System;
 using System.Linq;
+using System.Security.Cryptography;
 
 namespace WebGoatCore.Data
 {
@@ -59,12 +60,11 @@ namespace WebGoatCore.Data
         /// <returns>An unused CustomerId.</returns>
         private string GenerateCustomerId(string companyName)
         {
-            var random = new Random();
             var customerId = companyName.Replace(" ", "");
             customerId = (customerId.Length >= 5) ? customerId.Substring(0, 5) : customerId;
             while (CustomerIdExists(customerId))
             {
-                customerId = customerId.Substring(0, 4) + "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"[random.Next(35)];
+                customerId = customerId.Substring(0, 4) + "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"[RandomNumberGenerator.GetInt32(35)];
             }
             return customerId;
         }

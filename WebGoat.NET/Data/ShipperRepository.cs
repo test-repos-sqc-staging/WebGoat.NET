@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 
 namespace WebGoatCore.Data
 {
@@ -43,19 +44,18 @@ namespace WebGoatCore.Data
         /// </remarks>
         public string GetNextTrackingNumber(Shipper shipper)
         {
-            var random = new Random();
             var companyName = shipper.CompanyName;
             if (companyName.Contains("UPS"))
             {
-                return string.Format("1Z{0} {1} {2} {3} {4} {5}", random.Next(999).ToString("000"), random.Next(999).ToString("000"), random.Next(99).ToString("00"), random.Next(9999).ToString("0000"), random.Next(999).ToString("000"), random.Next(9).ToString("0"));
+                return string.Format("1Z{0} {1} {2} {3} {4} {5}", RandomNumberGenerator.GetInt32(999).ToString("000"), RandomNumberGenerator.GetInt32(999).ToString("000"), RandomNumberGenerator.GetInt32(99).ToString("00"), RandomNumberGenerator.GetInt32(9999).ToString("0000"), RandomNumberGenerator.GetInt32(999).ToString("000"), RandomNumberGenerator.GetInt32(9).ToString("0"));
             }
             else if (companyName.Contains("FedEx"))
             {
-                return string.Format("{0}{1}", random.Next(999999).ToString("000000"), random.Next(999999).ToString("000000"));
+                return string.Format("{0}{1}", RandomNumberGenerator.GetInt32(999999).ToString("000000"), RandomNumberGenerator.GetInt32(999999).ToString("000000"));
             }
             else if (companyName.Contains("US Postal Service"))
             {
-                return string.Format("{0} {1} {2}", random.Next(9999).ToString("0000"), random.Next(9999).ToString("0000"), random.Next(99).ToString("00"));
+                return string.Format("{0} {1} {2}", RandomNumberGenerator.GetInt32(9999).ToString("0000"), RandomNumberGenerator.GetInt32(9999).ToString("0000"), RandomNumberGenerator.GetInt32(99).ToString("00"));
             }
             else
             {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
@@ -140,7 +141,7 @@ namespace WebGoatCore.Models
         public string ChargeCard(decimal amount)
         {
             //Here is where we'd actually charge the card if this were real.
-            var code = new Random().Next(999999).ToString("000000");
+            var code = RandomNumberGenerator.GetInt32(999999).ToString("000000");
             return code;
         }
         #endregion

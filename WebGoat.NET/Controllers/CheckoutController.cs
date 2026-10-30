@@ -79,6 +79,11 @@ namespace WebGoatCore.Controllers
         {
             model.Cart = HttpContext.Session.Get<Cart>("Cart")!;
 
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             var customer = GetCustomerOrAddError();
             if(customer == null)
             {
