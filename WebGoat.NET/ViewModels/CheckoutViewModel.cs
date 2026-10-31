@@ -43,13 +43,16 @@ namespace WebGoatCore.ViewModels
 
         [Display(Name = "Expiration")]
         [Required(ErrorMessage = "Please enter expiration month")]
+        [Range(1, 12, ErrorMessage = "Please enter expiration month")]
         public int ExpirationMonth { get; set; }
 
         [Required(ErrorMessage = "Please enter expiration year")]
+        [Range(1, 9999, ErrorMessage = "Please enter expiration year")]
         public int ExpirationYear { get; set; }
 
         [Display(Name = "Remember this credit card number for next time I check out.")]
         [Required(ErrorMessage = "Please mark whether credit card number should be remembered")]
+        [Newtonsoft.Json.JsonRequired]
         public bool RememberCreditCard { get; set; }
 
         private static IDictionary<int, string> _shippingOptions;
