@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebGoatCore.ViewModels
 {
@@ -27,6 +28,7 @@ namespace WebGoatCore.ViewModels
         public string? Country { get; set; }
 
 
+        [BindNever]
         public bool UpdatedSucessfully { get; set; }
     }
 }
