@@ -51,7 +51,7 @@ namespace WebGoatCore.Data
 
         public List<Product> FindNonDiscontinuedProducts(string? productName, int? categoryId)
         {
-            var products = _context.Products.Where(p => !p.Discontinued);
+            var products = _context.Products.Where(p => p.Discontinued != true);
 
             if (categoryId != null)
             {
