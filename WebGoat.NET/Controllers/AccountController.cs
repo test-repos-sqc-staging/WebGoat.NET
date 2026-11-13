@@ -208,7 +208,7 @@ namespace WebGoatCore.Controllers
         [HttpPost]
         public async Task<IActionResult> AddUserTemp(AddUserTempViewModel model)
         {
-            if(!model.IsIssuerAdmin)
+            if(model.IsIssuerAdmin != true)
             {
                 return RedirectToAction("Login");
             }

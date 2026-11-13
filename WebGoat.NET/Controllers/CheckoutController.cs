@@ -116,6 +116,13 @@ namespace WebGoatCore.Controllers
                 return View(_model);
             }
 
+            if (model.ShippingMethod == null)
+            {
+                ModelState.AddModelError(string.Empty, "Please select a shipping method.");
+                _model = model;
+                return View(_model);
+            }
+
             if (model.RememberCreditCard)
             {
                 creditCard.SaveCardForUser();
@@ -123,7 +130,7 @@ namespace WebGoatCore.Controllers
 
             var order = new Order
             {
-                ShipVia = model.ShippingMethod,
+                ShipVia = model.ShippingMethod.Value,
                 ShipName = model.ShipTarget,
                 ShipAddress = model.Address,
                 ShipCity = model.City,
@@ -134,7 +141,7 @@ namespace WebGoatCore.Controllers
                 CustomerId = customer.CustomerId,
                 OrderDate = DateTime.Now,
                 RequiredDate = DateTime.Now.AddDays(7),
-                Freight = Math.Round(_shipperRepository.GetShipperByShipperId(model.ShippingMethod).GetShippingCost(model.Cart.SubTotal), 2),
+                Freight = Math.Round(_shipperRepository.GetShipperByShipperId(model.ShippingMethod.Value).GetShippingCost(model.Cart.SubTotal), 2),
                 EmployeeId = 1,
             };
 

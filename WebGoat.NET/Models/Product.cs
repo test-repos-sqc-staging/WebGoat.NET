@@ -23,7 +23,8 @@ namespace WebGoatCore.Models
         [Display(Name = "Reorder level:")]
         public short ReorderLevel { get; set; }
         [Display(Name = "Discontinued")]
-        public bool Discontinued { get; set; }
+        [Required]
+        public bool? Discontinued { get; set; }
 
         [Display(Name = "Category:")]
         public virtual Category Category { get; set; }

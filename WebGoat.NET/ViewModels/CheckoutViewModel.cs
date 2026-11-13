@@ -34,7 +34,7 @@ namespace WebGoatCore.ViewModels
 
         [Display(Name = "Shipping method")]
         [Required(ErrorMessage = "Please enter country")]
-        public int ShippingMethod { get; set; }
+        public int? ShippingMethod { get; set; }
 
         [Display(Name = "Credit card number:")]
         [DataType(DataType.CreditCard, ErrorMessage = "This doesn't look like credit card number")]
